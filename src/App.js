@@ -90,10 +90,10 @@ const OptionsList = ({
 
 const Search = (props) => {
   const filterInput = createRef();
-  const {filterVal, filterUpdate} = props;
-  return(
+  const { filterVal, filterUpdate } = props;
+  return (
     <>
-     <form>
+      <form>
         <input
           type='text'
           ref={filterInput}
@@ -110,81 +110,82 @@ const Search = (props) => {
 }
 
 
-const App = (props) =>{
-const [state, setState] = useState({
-  filterText: '',
-  favourites: []
-});
-
-// const [searchBool, setSearch] = useState(false);
-const filterUpdate = (value) => {
-  setState({...state,
-    filterText: value
+const App = (props) => {
+  const [state, setState] = useState({
+    filterText: '',
+    favourites: []
   });
-}
 
-const addFavourite = (id) => {
-  const newSet = state.favourites.concat([id])
- setState({...state, 
-    favourites: newSet
-  })
-}
+  // const [searchBool, setSearch] = useState(false);
+  const filterUpdate = (value) => {
+    setState({
+      ...state,
+      filterText: value
+    });
+  }
 
-const deleteFavourite = (id) =>  {
-  const { favourites } = state
-  const newList = [
-    ...favourites.slice(0, id),
-    ...favourites.slice(id + 1)
-  ]
-  setState({...state, 
-    favourites: newList
-  })
-}
+  const addFavourite = (id) => {
+    const newSet = state.favourites.concat([id])
+    setState({
+      ...state,
+      favourites: newSet
+    })
+  }
 
+  const deleteFavourite = (id) => {
+    const { favourites } = state
+    const newList = [
+      ...favourites.slice(0, id),
+      ...favourites.slice(id + 1)
+    ]
+    setState({
+      ...state,
+      favourites: newList
+    })
+  }
 
-const hasSearch = state.filterText.length > 0
+  const hasSearch = state.filterText.length > 0
 
-return (
-  <div>
-    <header>
+  return (
+    <div>
+      <header>
 
-    </header>
-    <main>
-    <Search
-        filterVal={state.filterText}
-        filterUpdate={filterUpdate}
-      />
-
-      <SelectedList
-        data={props.data}
-        favourites={state.favourites}
-        deleteFavourite={deleteFavourite}
-      />
-      <div className="wrapper">
-        <OptionsList
-          data={props.data}
-          filter={state.filterText}
-          favourites={state.favourites}
-          addFavourite={addFavourite}
+      </header>
+      <main>
+        <Search
+          filterVal={state.filterText}
+          filterUpdate={filterUpdate}
         />
-      </div>
 
-      {/* 
+        <SelectedList
+          data={props.data}
+          favourites={state.favourites}
+          deleteFavourite={deleteFavourite}
+        />
+        <div className="wrapper">
+          <OptionsList
+            data={props.data}
+            filter={state.filterText}
+            favourites={state.favourites}
+            addFavourite={addFavourite}
+          />
+        </div>
+
+        {/* 
         Show only if user has typed in search.
         To reset the input field, we pass an 
         empty value to the filterUpdate method
       */}
-      {hasSearch &&
-        <button
-          onClick={filterUpdate}>
-          Clear Search
+        {hasSearch &&
+          <button
+            onClick={filterUpdate}>
+            Clear Search
         </button>
-      }
+        }
 
-    </main>
-  </div>
-)
-
+      </main>
+    </div>
+  )
 }
 
 export default App;
