@@ -160,19 +160,19 @@ class App extends Component {
     return (
       <div>
         <header>
-          <Search
+
+        </header>
+        <main>
+        <Search
             filterVal={this.state.filterText}
             filterUpdate={this.filterUpdate.bind(this)}
           />
-        </header>
-        <main>
 
           <SelectedList
             data={this.props.data}
             favourites={this.state.favourites}
             deleteFavourite={this.deleteFavourite.bind(this)}
           />
-
           <div className="wrapper">
             <OptionsList
               data={this.props.data}
