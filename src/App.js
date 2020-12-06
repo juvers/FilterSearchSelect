@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef, useState } from 'react';
 import './App.css';
 
 
@@ -92,29 +92,50 @@ const OptionsList = ({
 
 // need a component class here
 // since we are using `refs`
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.filterInput = createRef();
+// class Search extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.filterInput = createRef();
 
-  }
-  render() {
-    const { filterVal, filterUpdate } = this.props
-    return (
-      <form>
+//   }
+//   render() {
+//     const { filterVal, filterUpdate } = this.props
+//     return (
+//       <form>
+//         <input
+//           type='text'
+//           ref={this.filterInput}
+//           placeholder='Type to filter..'
+//           // binding the input value to state
+//           value={filterVal}
+//           onChange={() => {
+//             filterUpdate(this.filterInput.current.value)
+//           }}
+//         />
+//       </form>
+//     )
+//   }
+// }
+
+const Search = (props) => {
+  const filterInput = createRef();
+  const {filterVal, filterUpdate} = props;
+  return(
+    <>
+     <form>
         <input
           type='text'
-          ref={this.filterInput}
+          ref={filterInput}
           placeholder='Type to filter..'
           // binding the input value to state
           value={filterVal}
           onChange={() => {
-            filterUpdate(this.filterInput.current.value)
+            filterUpdate(filterInput.current.value)
           }}
         />
       </form>
-    )
-  }
+    </>
+  )
 }
 
 
@@ -199,6 +220,10 @@ class App extends Component {
     )
   }
 }
+
+// const Appx = (props) =>{
+
+// }
 
 export default App;
 
