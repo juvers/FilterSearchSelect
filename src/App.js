@@ -124,6 +124,13 @@ const App = (props) => {
     });
   }
 
+  const clearSearch = () => {
+    setState({
+      ...state,
+      filterText: ""
+    });
+  }
+
   const addFavourite = (id) => {
     const newSet = state.favourites.concat([id])
     setState({
@@ -178,7 +185,7 @@ const App = (props) => {
       */}
         {hasSearch &&
           <button
-            onClick={filterUpdate}>
+            onClick={clearSearch}>
             Clear Search
         </button>
         }
